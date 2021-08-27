@@ -1,0 +1,12 @@
+
+/* public/css/materialize.css is generated from this file by running 'npm run dev' */
+
+@import "node_modules/@materializecss/materialize/sass/components/color-variables";
+@import "node_modules/@materializecss/materialize/sass/components/color-classes";
+
+$primary-color: color("blue", "darken-4");
+$secondary-color: color("blue", "darken-1");
+$success-color: color("blue-grey", "lighten-1");
+$link-color: color("lime", "darken-3");
+
+@import "node_modules/@materializecss/materialize/sass/materialize.scss";

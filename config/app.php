@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
-
+    'name' => env('APP_NAME', 'Pluto'),
+    'logo' => 'logo.png',
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -81,6 +81,7 @@ return [
     */
 
     'locale' => 'en',
+    'locales' => ['en', 'hu'],
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +167,7 @@ return [
          * Package Service Providers...
          */
 
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Application Service Providers...
          */

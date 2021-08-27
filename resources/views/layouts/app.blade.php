@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <!-- indicate mobile friendly page-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- change status bar color on supported mobile browsers -->
+    <meta name="theme-color" content="#252A51">
+    <!-- change the page's icon in the browser's tab -->
+    <link rel="icon" href="{{ config('app.logo') }}">
+    <!-- CSRF Token for Laravel's forms -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- Title --}}
+    <title>{{ config('app.name', 'Urán') }}</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- jQuery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" href="{{ mix('css/materialize.css') }}">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.1.0-alpha/dist/js/materialize.min.js"></script>
+    {{-- Custom js and css --}}
+    <link rel="stylesheet" src="css/app.js">   
+    <script type="text/javascript" src="js/app.js"></script>
+    <script>
+        $(document).ready(
+            function() {
+                /* Init materialize components */
+                $('.sidenav').sidenav();
+                $('.collapsible').collapsible();
+                $('.tooltipped').tooltip();
+            }
+        );
+    </script>
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+</head>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+<body>
+    <header>
+        @include('layouts.navbar')
+    </header>
+    <div class="row">
+        <div class="container">
+            <div class="col s12 m12 l11 offset-xl2 offset-l3">
+                @yield('content')
+            </div>
         </div>
-    </body>
+    </div>
+    @include('utils.toast')
+    @stack('scripts')
+</body>
+
 </html>
