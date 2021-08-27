@@ -8,6 +8,7 @@
                     @csrf
                     <div class="card-content">
                         <div class="row">
+                            {{-- Email --}}
                             <div class="input-field col s12">
                                 <input id="email" name="email" type="email" value="{{ old('email') }}"
                                     class="validate  @error('email') invalid @enderror" required autocomplete="email"
@@ -19,6 +20,7 @@
                                     <span class="helper-text" data-error="{{ $message }}"></span>
                                 @enderror
                             </div>
+                            {{-- Password --}}
                             <div class="input-field col s12">
                                 <input id="password" name="password" type="password"
                                     class="validate @error('password') invalid @enderror" required
@@ -32,19 +34,16 @@
                                 @enderror
                             </div>
                         </div>
-                        <span class="helper-text right">
-                            <a href="{{ route('password.request') }}">
-                                @lang('user.forgotpwd')
-                            </a>
-                        </span>
                     </div>
                     <div class="card-action">
+                        {{-- Remember --}}
                         <span class="right">
                             <label>
                                 <input type="checkbox" name="remember">
                                 <span>@lang('user.remember_me')</span>
                             </label>
                         </span>
+                        {{-- Submit --}}
                         <button type="submit" class="waves-effect waves-light btn">@lang('user.login')</button>
                     </div>
                 </form>

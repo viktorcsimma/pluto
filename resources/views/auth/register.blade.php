@@ -8,6 +8,7 @@
                     @csrf
                     <div class="card-content">
                         <div class="row">
+                            {{-- Name --}}
                             <div class="input-field col s12">
                                 <input id="name" name="name" type="text" value="{{ old('name') }}"
                                     class="validate  @error('name') invalid @enderror" required autocomplete="name"
@@ -19,6 +20,7 @@
                                     <span class="helper-text" data-error="{{ $message }}"></span>
                                 @enderror
                             </div>
+                            {{-- Email --}}
                             <div class="input-field col s12">
                                 <input id="email" name="email" type="email" value="{{ old('email') }}"
                                     class="validate  @error('email') invalid @enderror" required autocomplete="email">
@@ -29,6 +31,7 @@
                                     <span class="helper-text" data-error="{{ $message }}"></span>
                                 @enderror
                             </div>
+                            {{-- Password --}}
                             <div class="input-field col s12">
                                 <input id="password" name="password" type="password"
                                     class="validate @error('password') invalid @enderror" required
@@ -41,6 +44,7 @@
                                     </span>
                                 @enderror
                             </div>
+                            {{-- Password confirm --}}
                             <div class="input-field col s12">
                                 <input id="password_confirmation" name="password_confirmation" type="password"
                                     class="validate @error('password_confirmation') invalid @enderror" required
@@ -55,6 +59,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- Submit --}}
                     <div class="card-action">
                         <button type="submit" class="waves-effect waves-light btn">@lang('user.register')</button>
                     </div>

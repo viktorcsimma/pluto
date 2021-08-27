@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(); //login/register...
 Route::get('/setlocale/{locale}', [UserController::class, 'setLocale'])->name('setlocale');
 
+/* Routes that needs authentication. Guests will be redirected to the login screen. */
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () { return view('home'); })->name('home');
 });

@@ -9,7 +9,8 @@ class UserController extends Controller
 {
     public function setLocale($locale)
     {
-        App::setLocale($locale);
-        return redirect()->back()->cookie('locale', $locale, config('app.locale_cookie_lifespan'));
+        App::setlocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
     }
 }
