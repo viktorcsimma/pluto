@@ -55,8 +55,12 @@
             </div>
         </div>
     </div>
-    @include('utils.toast')
-    @stack('scripts')
+     {{-- basic toast notification --}}
+     @if (session('message'))
+     <script>
+         M.toast({html: "{{ session('message') }}"});
+     </script>
+    @endif
 </body>
 
 </html>
