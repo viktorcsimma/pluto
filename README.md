@@ -1,6 +1,8 @@
 # Pluto
 The open source software development course's repository.
 
+It lies on the same basis as [Mars](https://github.com/luksan47/mars) to prepare its development.
+
 ## Set up development environment
 
 For OS X, [Valet](https://laravel.com/docs/8.x/valet) gives a pretty smooth experience. Easy to download, easy to configure.
