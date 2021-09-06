@@ -31,7 +31,7 @@ folders:
 ```
 The above line will map the folder `C:\Users\domi\Documents\GitHub\pluto` to the folder `/home/vagrant/code` in your Homestead virtal machine.
 
-9. You will need to create ssh keys to connect to the Homestead VM. ??? TODO
+9. You will need to create ssh keys to connect to the Homestead VM. Run `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"` to generate the keys (if the system can not find this command, try running it in `Git Bash` - this program should have been installed with git.) If the prompt says `Enter file in which to save the key...` just press enter to create the file in the default location, then enter a passphrase (~password, but we won't need to remember it).
 
 10. In your Homestead directory, run `vagrant up`. This will create a virtual machine with the Homestead configuration. If no error messages appear, run `vagrant ssh` to connect to the virtual machine. You will find yourself in the `/home/vagrant` directory in the VM. Here everything is installed and set up for you, including php, mysql, composer, etc.
 
