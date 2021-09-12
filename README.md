@@ -13,7 +13,7 @@ For Windows and Linux we will use [Laravel Homestead](https://laravel.com/docs/h
 
 2. Recommended: create a new folder named "Git" for your git projects.
 
-3. Clone (~Download) the Pluto repository. You can easily do this with `Github Desktop`. If you can not find this option there, clicking on the green `Code` button on the GitHub webpage and selecting `Open with GitHub Desktop` will do the job. Or you can use the command line too to clone the directory (see point 5.).
+3. Fork (click on the fork button at top right corner of the page) and clone (~Download) your fork of the Pluto repository. You can easily do this with `Github Desktop`. If you can not find this option there, clicking on the green `Code` button on the GitHub webpage and selecting `Open with GitHub Desktop` will do the job. Or you can use the command line too to clone the directory (see point 5.). Make sure to clone the `your_username/pluto`, not the `EotvosCollegium/pluto` repository. 
 
 4. Open a terminal and navigate to your git folder. (If you are not familiar with the command line, watch some YouTube tutorial about the terminal basics.)
 
