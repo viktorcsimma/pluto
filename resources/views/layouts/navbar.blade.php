@@ -20,9 +20,10 @@
                         <li><a class="waves-effect" href="https://laravel.com/docs/8.x" target="_blank">Laravel</a></li>
                         <li><a class="waves-effect" href="https://www.php.net/docs.php" target="_blank">PHP</a></li>
                         <li><a class="waves-effect" href="https://materializecss.github.io/materialize/" target="_blank">Materialize</a></li>
-                        {{-- TODO account settings --}}
-                        <li><a class="waves-effect" href="#"><i class="material-icons left">account_circle</i>{{ auth()->user()->name }}</a></li>
-                    @endguest
+                        {{-- account settings --}}
+                        <li><a class="waves-effect" href="{{ route('user') }}"><i class="material-icons left">account_circle</i>{{ auth()->user()->name }}</a></li>
+                                                        {{-- 192.168.10.10/user --}}
+                        @endguest
                 </ul>
             </div>
         </div>
