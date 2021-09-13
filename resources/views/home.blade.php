@@ -4,6 +4,7 @@
 
 <p>Welcome.</p>
 
+
 <div class="row">
   <div class="blue-grey darken-3 white-text s12 z-depth-2 center-align">
     <strong style="font-size: large">benutzer@white-laptop: ~</strong>
