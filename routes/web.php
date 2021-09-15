@@ -19,5 +19,5 @@ Route::get('/setlocale/{locale}', [UserController::class, 'setLocale'])->name('s
 /* Routes that needs authentication. Guests will be redirected to the login screen. */
 Route::middleware(['auth'])->group(function () {
     Route::get('/', function () { return view('home'); })->name('home');
-    Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::get('/user', [UserController::class, 'userc'])->name('user');
 });

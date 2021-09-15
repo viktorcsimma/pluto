@@ -15,11 +15,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function index()
-    {
-        $user = auth()->user(); //get the authenticated user
-        $users = User::all(); //get all users
-        return view('auth.user', ['user' => $user, 'users' => $users]);
+    public function userc() {
+      return view('user', ['current_user' => auth()->user(), 'all_users' => User::all()]);
     }
-
 }

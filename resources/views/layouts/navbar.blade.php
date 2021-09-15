@@ -23,7 +23,7 @@
                         {{-- account settings --}}
                         <li><a class="waves-effect" href="{{ route('user') }}"><i class="material-icons left">account_circle</i>{{ auth()->user()->name }}</a></li>
                                                         {{-- 192.168.10.10/user --}}
-                        @endguest
+                    @endguest
                 </ul>
             </div>
         </div>
@@ -35,7 +35,7 @@
     <!-- logo -->
     @include('layouts.logo')
 
-      
+
     <li>
         <ul class="collapsible collapsible-accordion">
             <!-- language select -->
@@ -66,4 +66,3 @@
         </form>
     @endauth
 </ul>
-
