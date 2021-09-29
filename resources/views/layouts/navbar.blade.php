@@ -53,8 +53,13 @@
         </ul>
     </li>
 
-    <!-- logout -->
     @auth
+        <li>
+            <a class="waves-effect" href="{{ route('todos.index') }}">
+                <i class="material-icons left">toc</i>@lang('todo.todos')
+            </a>
+        </li>
+        <!-- logout -->
         <li>
             <a class="waves-effect" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="material-icons left">login</i>@lang('user.logout')

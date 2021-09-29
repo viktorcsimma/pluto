@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Date;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,24 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(bool $withMessage=false)
     {
-        $all_todos=Todo::all();
-        return view('todos.index', ['all_todos' => $all_todos]);
+        $todos=Todo::where('completed', 0)->orderByDesc('expiration_date')->get();
+        //TODO: ordering correctly
+
+        $completed_count=Todo::where('completed', 1)->count();
+        $expired_count=Todo::where('expiration_date', '<', now())->count();
+
+        if ($withMessage)
+        {
+          return view('todos.index', ['todos' => $todos,
+                    'completed_count' => $completed_count, 'expired_count' => $expired_count])
+                    ->with('message', 'Reminder created successfully.');
+        }
+
+        return view('todos.index', ['todos' => $todos,
+                  'completed_count' => $completed_count, 'expired_count' => $expired_count]);
     }
 
     /**
@@ -25,7 +40,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todos.create');
     }
 
     /**
@@ -36,7 +51,9 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo=Todo::create($request->all());
+
+        return TodoController::index($withMessage=true);
     }
 
     /**
@@ -47,7 +64,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return view('todos.index', ['todos' => [$todo]]);
     }
 
     /**
@@ -58,7 +75,13 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+
+    }
+
+    public function setCompleted(Request $r)
+    {
+        $updated=Todo::where('id',$r->id)->update(['completed' => 1]);
+        return TodoController::index();
     }
 
     /**

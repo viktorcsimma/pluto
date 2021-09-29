@@ -19,7 +19,8 @@ class CreateTodosTable extends Migration
             $table->text('description')->nullable();
             $table->date('expiration_date')->nullable();
             $table->boolean('completed')->default(false);
-            $table->timestamps();
+            //$table->foreignId('user_id')->references('users');
+            $table->timestamps(); //adds a 'Created' and an 'Updated' date
         });
     }
 

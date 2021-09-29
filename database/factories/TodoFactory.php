@@ -24,8 +24,9 @@ class TodoFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
-            'expiration_date' => $this->faker->dateTimeBetween('now', '1 year'),
-            'completed' => $this->faker->boolean()
+            'expiration_date' => $this->faker->dateTimeBetween('-1 year', '1 year'),
+            'completed' => false,
+            //'user_id' => Users::all->vmi
         ];
     }
 }
