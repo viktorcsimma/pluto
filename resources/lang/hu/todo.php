@@ -3,6 +3,7 @@
 return [
   'todos' => 'Teendők',
   'create' => 'Hozzáadás',
+  'created' => 'Sikeresen létrehozva.',
   'name' => 'Név',
   'desc' => 'Leírás',
   'expire' => 'Határidő',

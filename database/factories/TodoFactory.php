@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TodoFactory extends Factory
@@ -26,7 +27,7 @@ class TodoFactory extends Factory
             'description' => $this->faker->paragraph(),
             'expiration_date' => $this->faker->dateTimeBetween('-1 year', '1 year'),
             'completed' => false,
-            //'user_id' => Users::all->vmi
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

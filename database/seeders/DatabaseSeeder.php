@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Todo;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,5 +19,10 @@ class DatabaseSeeder extends Seeder
         //TodoFactory's definition() adds what you don't add by yourself
         \App\Models\User::factory(10)->create();
         \App\Models\Todo::factory(20)->create();
+        $todos=Todo::get();
+        foreach ($todos as $todo)
+        {
+          $todo->users_assigned()->attach($todo->user_id);
+        }
     }
 }

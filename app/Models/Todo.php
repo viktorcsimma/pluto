@@ -13,6 +13,15 @@ class Todo extends Model
       'name',
       'description',
       'expiration_date',
-      'completed'
+      'completed',
+      'user_id',
     ];
+
+    public function user() {
+      return $this->belongsTo(User::class);
+    }
+
+    public function users_assigned() {
+      return $this->belongsToMany(User::class);
+    }
 }

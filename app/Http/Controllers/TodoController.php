@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Date;
 use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
@@ -16,17 +18,18 @@ class TodoController extends Controller
 
     public function index(bool $withMessage=false)
     {
-        $todos=Todo::where('completed', 0)->orderByDesc('expiration_date')->get();
+        //$todos=Todo::where('completed', 0)->orderByDesc('expiration_date')->get();
+        $todos=auth()->user()->todos_assigned()->where('completed', 0)->orderByDesc('expiration_date')->get();
         //TODO: ordering correctly
 
-        $completed_count=Todo::where('completed', 1)->count();
-        $expired_count=Todo::where('expiration_date', '<', now())->count();
+        $completed_count=auth()->user()->todos_assigned()->where('completed', 1)->count();
+        $expired_count=auth()->user()->todos_assigned()->where('expiration_date', '<', now())->count();
 
         if ($withMessage)
         {
           return view('todos.index', ['todos' => $todos,
                     'completed_count' => $completed_count, 'expired_count' => $expired_count])
-                    ->with('message', 'Reminder created successfully.');
+                    ->with('message', __('todo.created'));
         }
 
         return view('todos.index', ['todos' => $todos,
@@ -51,7 +54,19 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        $todo=Todo::create($request->all());
+        //areturn response()->json($request);
+        Validator::make($request->all(), [
+          'name' => 'required|max:255',
+          'description' => 'nullable'
+        ])->validate();
+        //ide nem jut el, ha vmi nem jo
+
+        $todo=Todo::create([
+          'name' => $request->name,
+          'user_id' => auth()->user()->id,
+          'description' => $request->description,
+        ]);
+        $todo->users_assigned()->attach(auth()->user()->id);
 
         return TodoController::index($withMessage=true);
     }
@@ -80,6 +95,9 @@ class TodoController extends Controller
 
     public function setCompleted(Request $r)
     {
+        if (auth()->user()->cannot('update', $post)) {
+            abort(403);
+        }
         $updated=Todo::where('id',$r->id)->update(['completed' => 1]);
         return TodoController::index();
     }
@@ -91,9 +109,25 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
+    public function assign(Request $r)
+    {
+
+        Validator::make($r->all(), [
+          'user_name'=>'exists:users,name',
+          'todo_id'=>'exists:todos,id',
+        ])->validate();
+        $todo=Todo::where('id',$r->todo_id)->first();
+        if (auth()->user()->cannot('update', $todo)) {
+            abort(403);
+        }
+        $assigned_user=User::where('name',$r->user_name)->first();
+        $todo->users_assigned()->attach($assigned_user->id);
+        return back()->with('message', 'Successfully assigned');
+    }
+
     public function update(Request $request, Todo $todo)
     {
-        //
+
     }
 
     /**

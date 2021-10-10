@@ -3,6 +3,7 @@
 return [
   'todos' => 'Reminders',
   'create' => 'Create',
+  'created' => "Reminder successfully created.",
   'name' => 'Name',
   'desc' => 'Description',
   'expire' => 'Expires at',
